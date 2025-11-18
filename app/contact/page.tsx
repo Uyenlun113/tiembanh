@@ -1,52 +1,46 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { useState } from "react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement form submission
-    alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    alert("Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.");
+    setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main>
-        {/* Hero Section */}
         <section className="bg-primary-50 py-16">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-4">
-              Liên Hệ
-            </h1>
-            <p className="text-center text-gray-600 max-w-2xl mx-auto">
-              Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.4em] text-primary-500">Contact Thùy Dung</p>
+            <h1 className="mt-3 text-4xl font-bold text-gray-900 md:text-5xl">Kết nối ngay với Bánh Gato Thùy Dung</h1>
+            <p className="mt-4 text-gray-600 md:text-lg">
+              Hotline 0988 884 285 hoạt động 24/7 – sẵn sàng hỗ trợ bạn đặt bánh nhanh, thiết kế theo yêu cầu.
             </p>
           </div>
         </section>
 
-        {/* Contact Content */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Gửi tin nhắn cho chúng tôi</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid gap-12 lg:grid-cols-3">
+              <div className="rounded-3xl bg-white p-8 shadow-[0_25px_60px_rgba(0,0,0,0.05)] lg:col-span-2">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Gửi yêu cầu đặt bánh</h2>
+                <form onSubmit={handleSubmit} className="grid gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Họ và tên *
-                    </label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Họ và tên *</label>
                     <input
                       type="text"
                       value={formData.name}
@@ -56,9 +50,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Email *
-                    </label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
                     <input
                       type="email"
                       value={formData.email}
@@ -68,9 +60,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Số điện thoại
-                    </label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Số điện thoại</label>
                     <input
                       type="tel"
                       value={formData.phone}
@@ -79,9 +69,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Tin nhắn *
-                    </label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Nội dung yêu cầu *</label>
                     <textarea
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -92,73 +80,58 @@ export default function ContactPage() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-primary-600 text-white px-8 py-4 rounded-lg hover:bg-primary-700 transition-colors font-semibold text-lg"
+                    className="rounded-full bg-primary-600 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-primary-700"
                   >
-                    Gửi tin nhắn
+                    Gửi yêu cầu ngay
                   </button>
                 </form>
               </div>
 
-              {/* Contact Info */}
-              <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Thông tin liên hệ</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">Địa chỉ</h3>
-                      <p className="text-gray-600">
-                        123 Đường ABC, Quận XYZ<br />
-                        Thành phố Hồ Chí Minh, Việt Nam
-                      </p>
-                    </div>
+              <div className="space-y-6 rounded-3xl bg-gray-50 p-8">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.3em] text-primary-500">Hệ thống cửa hàng</p>
+                  <div className="mt-4 space-y-4">
+                    {[
+                      { title: "Cơ sở 1", address: "69 Phố Lồ, xã Nguyệt Đức, Phú Thọ" },
+                      { title: "Cơ sở 2", address: "208 Văn Tiến, xã Nguyệt Đức, Phú Thọ" },
+                    ].map((item) => (
+                      <div key={item.title} className="rounded-2xl bg-white p-4 shadow-sm">
+                        <p className="text-xs uppercase tracking-[0.3em] text-gray-500">{item.title}</p>
+                        <p className="mt-2 font-semibold text-gray-900">{item.address}</p>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">Điện thoại</h3>
-                      <p className="text-gray-600">
-                        +84 123 456 789<br />
-                        +84 987 654 321
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">Email</h3>
-                      <p className="text-gray-600">
-                        info@apcake.com<br />
-                        support@apcake.com
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">Giờ làm việc</h3>
-                      <p className="text-gray-600">
-                        Thứ 2 - Thứ 6: 8:00 - 20:00<br />
-                        Thứ 7 - Chủ nhật: 9:00 - 18:00
-                      </p>
-                    </div>
+                </div>
+                <div className="rounded-2xl bg-white p-4 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Hotline</p>
+                  <a href="tel:0988884285" className="mt-2 block text-2xl font-semibold text-primary-600">
+                    0988 884 285
+                  </a>
+                  <p className="text-sm text-gray-500">Zalo / Messenger hỗ trợ 24/7</p>
+                </div>
+                <div className="rounded-2xl bg-white p-4 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Email</p>
+                  <a href="mailto:hello@banhgathuydung.vn" className="mt-2 block font-semibold text-gray-900">
+                    hello@banhgathuydung.vn
+                  </a>
+                </div>
+                <div className="rounded-2xl bg-white p-4 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Giờ hoạt động</p>
+                  <p className="mt-2 text-sm text-gray-700">
+                    Thứ 2 - Chủ nhật: 7:00 - 21:00 <br /> (Nhận bánh gấp theo ca)
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-white p-4 shadow-sm">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Theo dõi</p>
+                  <div className="mt-3 flex gap-3">
+                    {["Facebook", "Zalo"].map((social) => (
+                      <button
+                        key={social}
+                        className="rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600"
+                      >
+                        {social}
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -170,4 +143,3 @@ export default function ContactPage() {
     </div>
   );
 }
-

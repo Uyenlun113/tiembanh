@@ -1,29 +1,25 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const menuItems = [
-    { href: '/admin', label: 'Tổng quan', icon: '📊' },
-    { href: '/admin/categories', label: 'Danh mục', icon: '📁' },
-    { href: '/admin/products', label: 'Sản phẩm', icon: '🍰' },
-    { href: '/admin/promotions', label: 'Ưu đãi', icon: '🎁' },
-    { href: '/admin/banners', label: 'Banner', icon: '🖼️' },
+    { href: "/admin", label: "Tổng quan", icon: "📊" },
+    { href: "/admin/categories", label: "Danh mục", icon: "📁" },
+    { href: "/admin/products", label: "Sản phẩm", icon: "🍰" },
+    { href: "/admin/promotions", label: "Ưu đãi", icon: "🎁" },
+    { href: "/admin/banners", label: "Banner", icon: "🖼️" },
   ];
 
   const Sidebar = (
     <aside className="flex h-full flex-col gap-6 bg-[#0f172a] px-6 py-10 text-white">
       <div>
-        <p className="text-xs uppercase tracking-[0.4em] text-white/50">Ap Cake</p>
+        <p className="text-xs uppercase tracking-[0.4em] text-white/50">Bánh Gato Thúy Dung</p>
         <p className="text-2xl font-semibold">Control Center</p>
       </div>
       <nav className="space-y-1">
@@ -35,7 +31,7 @@ export default function AdminLayout({
               href={item.href}
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${
-                active ? 'bg-white text-[#0f172a]' : 'text-white/70 hover:bg-white/10'
+                active ? "bg-white text-[#0f172a]" : "text-white/70 hover:bg-white/10"
               }`}
             >
               <span className="text-lg">{item.icon}</span>
@@ -46,7 +42,7 @@ export default function AdminLayout({
       </nav>
       <div className="mt-auto rounded-2xl bg-white/10 p-4 text-sm text-white/80">
         <p className="font-semibold">Hỗ trợ 24/7</p>
-        <p className="text-white/60">hello@apcake.com</p>
+        <p className="text-white/60">hello@banhgathuydung.vn</p>
       </div>
     </aside>
   );
@@ -54,16 +50,14 @@ export default function AdminLayout({
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       <div className="lg:flex">
-        <div className="hidden lg:fixed lg:bottom-0 lg:left-0 lg:top-0 lg:block lg:w-72">
-          {Sidebar}
-        </div>
+        <div className="hidden lg:fixed lg:bottom-0 lg:left-0 lg:top-0 lg:block lg:w-72">{Sidebar}</div>
 
         {mobileOpen && (
-          <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden" onClick={() => setMobileOpen(false)}>
-            <div
-              className="absolute left-0 top-0 h-full w-64"
-              onClick={(e) => e.stopPropagation()}
-            >
+          <div
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+            onClick={() => setMobileOpen(false)}
+          >
+            <div className="absolute left-0 top-0 h-full w-64" onClick={(e) => e.stopPropagation()}>
               {Sidebar}
             </div>
           </div>
@@ -82,7 +76,7 @@ export default function AdminLayout({
                   </svg>
                 </button>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.4em] text-gray-400">Ap Cake</p>
+                  <p className="text-xs uppercase tracking-[0.4em] text-gray-400">Bánh Gato Thúy Dung</p>
                   <p className="text-xl font-semibold text-gray-900">Bảng điều khiển</p>
                 </div>
               </div>
@@ -110,4 +104,3 @@ export default function AdminLayout({
     </div>
   );
 }
-

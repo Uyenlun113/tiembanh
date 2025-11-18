@@ -1,105 +1,97 @@
-'use client';
+"use client";
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="bg-primary-50 py-16">
+        <section className="bg-primary-50 py-16 text-center">
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-4">
-              Về Chúng Tôi
+            <p className="text-sm font-semibold uppercase tracking-[0.4em] text-primary-500">About Thùy Dung</p>
+            <h1 className="mt-3 text-4xl font-bold text-gray-900 md:text-5xl">
+              Bánh Gato Thùy Dung – Ngọt ngào gửi trọn yêu thương
             </h1>
-            <p className="text-center text-gray-600 max-w-2xl mx-auto">
-              Ap Cake - Nơi hội tụ những hương vị tuyệt vời nhất
+            <p className="mt-4 text-gray-600 md:text-lg">
+              Hiệu bánh thủ công tại Nguyệt Đức, Phú Thọ – nơi bạn có thể đặt mọi kiểu bánh sinh nhật, bánh sự kiện theo
+              yêu cầu.
             </p>
           </div>
         </section>
 
-        {/* About Content */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Câu chuyện của chúng tôi</h2>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  Ap Cake được thành lập với niềm đam mê mang đến những chiếc bánh ngọt ngào và tươi ngon nhất cho khách hàng. 
-                  Chúng tôi tin rằng mỗi chiếc bánh không chỉ là một món ăn, mà còn là một tác phẩm nghệ thuật được tạo ra 
-                  với tình yêu và sự tận tâm.
-                </p>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  Với hơn 10 năm kinh nghiệm trong ngành bánh kẹo, chúng tôi đã không ngừng cải thiện và đổi mới để mang đến 
-                  những sản phẩm chất lượng cao nhất. Từ những nguyên liệu tươi ngon được chọn lọc kỹ lưỡng đến quy trình sản xuất 
-                  nghiêm ngặt, mọi thứ đều được chúng tôi chăm chút tỉ mỉ.
+            <div className="mb-16 grid gap-12 lg:grid-cols-2">
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold text-gray-900">Giới thiệu hiệu bánh Thùy Dung</h2>
+                <p className="text-gray-600 leading-relaxed">
+                  Hiệu bánh Gato Thùy Dung là địa chỉ quen thuộc chuyên cung cấp bánh sinh nhật, bánh sự kiện và bánh
+                  ngọt theo yêu cầu với hương vị thơm ngon – chuẩn vị – an toàn. Với nhiều năm kinh nghiệm làm bánh thủ
+                  công, chúng tôi luôn đặt chất lượng và sự hài lòng của khách hàng lên hàng đầu.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  Đội ngũ của chúng tôi bao gồm những thợ làm bánh tài năng và nhiệt huyết, luôn sẵn sàng tạo ra những chiếc bánh 
-                  độc đáo và đặc biệt theo yêu cầu của bạn.
+                  Thùy Dung nhận làm bánh sinh nhật trẻ em – người lớn, bánh cưới, bánh kỷ niệm, khai trương, cupcake –
+                  mini cake và cả bánh thiết kế theo mẫu khách gửi. Chỉ cần bạn tượng tưởng, phần còn lại hãy để chúng
+                  tôi chăm chút.
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  Nguyên liệu được chọn lọc kỹ càng, trang trí tinh tế, giao hàng nhanh chóng cùng dịch vụ tư vấn tận
+                  tâm – đó là cam kết mà Thùy Dung luôn giữ suốt nhiều năm qua.
                 </p>
               </div>
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1556910096-6f5e72db6803?w=800"
-                  alt="Về chúng tôi"
-                  className="rounded-lg shadow-xl"
+                  src="https://res.cloudinary.com/datjhdhe2/image/upload/v1763458900/576532236_4201855833419678_1444017225392973163_n_f3omcv.jpg"
+                  alt="Bánh Gato Thùy Dung"
+                  className="rounded-3xl shadow-xl"
                 />
               </div>
             </div>
 
-            {/* Values */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="text-center p-6 bg-primary-50 rounded-lg">
-                <div className="text-4xl mb-4">🎯</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Sứ mệnh</h3>
-                <p className="text-gray-600">
-                  Mang đến những sản phẩm bánh chất lượng cao nhất với giá cả hợp lý cho mọi khách hàng.
-                </p>
-              </div>
-              <div className="text-center p-6 bg-primary-50 rounded-lg">
-                <div className="text-4xl mb-4">👁️</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Tầm nhìn</h3>
-                <p className="text-gray-600">
-                  Trở thành thương hiệu bánh kẹo hàng đầu, được yêu thích và tin tưởng bởi khách hàng.
-                </p>
-              </div>
-              <div className="text-center p-6 bg-primary-50 rounded-lg">
-                <div className="text-4xl mb-4">💎</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Giá trị cốt lõi</h3>
-                <p className="text-gray-600">
-                  Chất lượng, tận tâm, sáng tạo và cam kết mang đến trải nghiệm tuyệt vời cho khách hàng.
-                </p>
+            <div className="mb-16 rounded-3xl bg-gray-50 p-8">
+              <h3 className="text-2xl font-semibold text-gray-900">Chúng tôi nhận làm</h3>
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                {[
+                  "Bánh sinh nhật trẻ em – người lớn",
+                  "Bánh tiệc cưới, tiệc kỷ niệm, khai trương",
+                  "Cupcake, mini cake, bánh set teatime",
+                  "Bánh thiết kế theo yêu cầu hoặc theo hình ảnh khách gửi",
+                ].map((text) => (
+                  <div key={text} className="flex items-start gap-3 rounded-2xl bg-white px-4 py-3 shadow-sm">
+                    <span className="text-primary-500">✨</span>
+                    <p className="text-gray-700">{text}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Team */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-800 mb-8">Đội ngũ của chúng tôi</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto rounded-full bg-primary-200 mb-4 flex items-center justify-center text-4xl">
-                    👨‍🍳
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">Đầu bếp trưởng</h3>
-                  <p className="text-gray-600">Với 15 năm kinh nghiệm trong nghề</p>
+            <div className="mb-16 grid gap-6 md:grid-cols-3">
+              {[
+                { title: "Nguyên liệu chuẩn", desc: "Sữa tươi, kem lạnh, bơ và trái cây rõ nguồn gốc." },
+                { title: "Trang trí tinh tế", desc: "Màu sắc hiện đại, phù hợp mọi concept sự kiện." },
+                { title: "Đặt bánh nhanh", desc: "Hỗ trợ tư vấn 24/7 và giao hàng tận nơi khu vực Phú Thọ." },
+              ].map((item) => (
+                <div key={item.title} className="rounded-3xl bg-white p-6 shadow-[0_15px_40px_rgba(0,0,0,0.05)]">
+                  <h4 className="text-lg font-semibold text-gray-900">{item.title}</h4>
+                  <p className="mt-2 text-sm text-gray-600">{item.desc}</p>
                 </div>
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto rounded-full bg-primary-200 mb-4 flex items-center justify-center text-4xl">
-                    👩‍🍳
+              ))}
+            </div>
+
+            <div className="rounded-3xl bg-primary-50 p-8">
+              <h3 className="text-2xl font-semibold text-gray-900">Hệ thống tiệm bánh</h3>
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                {[
+                  { title: "Cơ sở 1", address: "69 Phố Lồ, xã Nguyệt Đức, Phú Thọ" },
+                  { title: "Cơ sở 2", address: "208 Văn Tiến, xã Nguyệt Đức, Phú Thọ" },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-2xl bg-white p-5 shadow-sm">
+                    <p className="text-sm uppercase tracking-[0.3em] text-primary-500">{item.title}</p>
+                    <p className="mt-2 font-semibold text-gray-900">{item.address}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">Thợ làm bánh</h3>
-                  <p className="text-gray-600">Chuyên nghiệp và sáng tạo</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto rounded-full bg-primary-200 mb-4 flex items-center justify-center text-4xl">
-                    👨‍💼
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">Quản lý</h3>
-                  <p className="text-gray-600">Đảm bảo chất lượng dịch vụ</p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -109,4 +101,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
