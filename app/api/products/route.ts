@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Product from '@/models/Product';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate mỗi 60 giây
+
 export async function GET(request: NextRequest) {
   try {
     await connectDB();
@@ -25,14 +28,25 @@ export async function GET(request: NextRequest) {
       query.isActive = true;
     }
     
-    let productsQuery = Product.find(query).populate('category').sort({ createdAt: -1 });
+    let productsQuery = Product.find(query)
+      .populate('category', 'name slug')
+      .select('-__v')
+      .sort({ createdAt: -1 });
     
     if (limit > 0) {
       productsQuery = productsQuery.limit(limit);
     }
     
     const products = await productsQuery;
-    return NextResponse.json({ success: true, data: products });
+    
+    return NextResponse.json(
+      { success: true, data: products },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+        },
+      }
+    );
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }

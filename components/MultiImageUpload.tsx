@@ -19,29 +19,57 @@ export default function MultiImageUpload({ value, onChange, label = 'Hình ảnh
     const newUrls: string[] = [...value];
 
     try {
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+      const uploadPromises = Array.from(files).map(async (file) => {
         const formData = new FormData();
         formData.append('file', file);
 
-        const res = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-        const data = await res.json();
-        if (data.success) {
-          newUrls.push(data.url);
-        } else {
-          alert(`Lỗi upload ảnh ${file.name}: ${data.error || 'Unknown error'}`);
+        try {
+          const res = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+            signal: controller.signal,
+          });
+
+          clearTimeout(timeoutId);
+
+          if (!res.ok) {
+            const errorData = await res.json().catch(() => ({ error: 'Lỗi kết nối server' }));
+            throw new Error(errorData.error || `Lỗi ${res.status}`);
+          }
+
+          const data = await res.json();
+          if (data.success) {
+            return data.url;
+          } else {
+            throw new Error(data.error || 'Upload thất bại');
+          }
+        } catch (error: any) {
+          if (error.name === 'AbortError') {
+            throw new Error(`Upload ${file.name} quá thời gian chờ`);
+          }
+          throw error;
         }
-      }
+      });
+
+      const uploadedUrls = await Promise.allSettled(uploadPromises);
+      
+      uploadedUrls.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          newUrls.push(result.value);
+        } else {
+          alert(`Lỗi upload ${files[index]?.name}: ${result.reason?.message || 'Unknown error'}`);
+        }
+      });
+
       if (newUrls.length > 0) {
         onChange(newUrls);
       }
     } catch (error: any) {
       console.error('Upload error:', error);
-      alert('Lỗi upload ảnh: ' + (error.message || 'Unknown error'));
+      alert('Lỗi upload ảnh: ' + (error.message || 'Lỗi không xác định'));
     } finally {
       setUploading(false);
     }

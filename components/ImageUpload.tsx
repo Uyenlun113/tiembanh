@@ -29,23 +29,36 @@ export default function ImageUpload({ value, onChange, label = 'Hình ảnh' }: 
       const formData = new FormData();
       formData.append('file', file);
 
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 giây timeout
+
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({ error: 'Lỗi kết nối server' }));
+        throw new Error(errorData.error || `Lỗi ${res.status}: ${res.statusText}`);
+      }
 
       const data = await res.json();
       if (data.success) {
         onChange(data.url);
         setPreview(data.url);
       } else {
-        alert('Lỗi upload: ' + (data.error || 'Unknown error'));
-        setPreview(null);
+        throw new Error(data.error || 'Upload thất bại');
       }
     } catch (error: any) {
       console.error('Upload error:', error);
-      alert('Lỗi upload ảnh: ' + (error.message || 'Unknown error'));
-      setPreview(null);
+      const errorMessage = error.name === 'AbortError' 
+        ? 'Upload quá thời gian chờ. Vui lòng thử lại với file nhỏ hơn.'
+        : error.message || 'Lỗi không xác định';
+      alert('Lỗi upload ảnh: ' + errorMessage);
+      setPreview(value || null); // Khôi phục preview cũ nếu có
     } finally {
       setUploading(false);
     }
