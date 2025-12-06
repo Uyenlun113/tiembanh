@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-950 text-white">
       <div className="container mx-auto px-4 py-14">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+        <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-500 text-2xl">🍰</div>
@@ -27,7 +27,6 @@ export default function Footer() {
               ))}
             </div>
           </div>
-
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">Cửa hàng</h4>
             <ul className="mt-4 space-y-3 text-sm text-white/80">
@@ -53,7 +52,6 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">Liên hệ</h4>
             <ul className="mt-4 space-y-3 text-sm text-white/80">
@@ -62,21 +60,7 @@ export default function Footer() {
               <li>CS1: 69 Phố Lồ, Nguyệt Đức, Phú Thọ</li>
               <li>CS2: 208 Văn Tiến, Nguyệt Đức, Phú Thọ</li>
             </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">App mobile</h4>
-            <div className="mt-4 space-y-3">
-              <button className="flex w-full items-center justify-between rounded-2xl border border-white/20 px-4 py-3 text-sm font-semibold text-white/80 transition hover:border-white">
-                App Store
-                <span aria-hidden>→</span>
-              </button>
-              <button className="flex w-full items-center justify-between rounded-2xl border border-white/20 px-4 py-3 text-sm font-semibold text-white/80 transition hover:border-white">
-                Google Play
-                <span aria-hidden>→</span>
-              </button>
-            </div>
-          </div>
+          </div>{" "}
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-6 text-center text-sm text-white/60">

@@ -7,15 +7,17 @@ export async function GET(request: NextRequest) {
     await connectDB();
     const { searchParams } = new URL(request.url);
     const position = searchParams.get('position');
+    const all = searchParams.get('all'); // Thêm param để lấy tất cả (cho admin)
     
     let query: any = {};
     
-    // If no position filter, show only active banners
-    if (!position) {
+    // Nếu có param 'all' hoặc position được set (kể cả rỗng), lấy tất cả banners
+    // Nếu không, chỉ lấy active banners
+    if (!all && position === null) {
       query.isActive = true;
     }
     
-    if (position) {
+    if (position && position !== '') {
       query.position = position;
     }
     

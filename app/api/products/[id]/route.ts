@@ -2,10 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Product from '@/models/Product';
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export const dynamic = 'force-dynamic';
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> | { id: string } }
+) {
   try {
     await connectDB();
-    const product = await Product.findById(params.id).populate('category');
+    const { id } = await Promise.resolve(params);
+    const product = await Product.findById(id).populate('category');
     if (!product) {
       return NextResponse.json({ success: false, error: 'Product not found' }, { status: 404 });
     }
@@ -15,11 +21,15 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> | { id: string } }
+) {
   try {
     await connectDB();
+    const { id } = await Promise.resolve(params);
     const body = await request.json();
-    const product = await Product.findByIdAndUpdate(params.id, body, { new: true, runValidators: true });
+    const product = await Product.findByIdAndUpdate(id, body, { new: true, runValidators: true });
     if (!product) {
       return NextResponse.json({ success: false, error: 'Product not found' }, { status: 404 });
     }
@@ -30,10 +40,14 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> | { id: string } }
+) {
   try {
     await connectDB();
-    const product = await Product.findByIdAndDelete(params.id);
+    const { id } = await Promise.resolve(params);
+    const product = await Product.findByIdAndDelete(id);
     if (!product) {
       return NextResponse.json({ success: false, error: 'Product not found' }, { status: 404 });
     }

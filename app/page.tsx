@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import PopularCategories from '@/components/PopularCategories';
-import BestSellers from '@/components/BestSellers';
-import Testimonials from '@/components/Testimonials';
-import Newsletter from '@/components/Newsletter';
-import Footer from '@/components/Footer';
+import BestSellers from "@/components/BestSellers";
+import Features from "@/components/Features";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Newsletter from "@/components/Newsletter";
+import PopularCategories from "@/components/PopularCategories";
 
 export default function Home() {
   return (
@@ -18,11 +17,10 @@ export default function Home() {
         <Features />
         <PopularCategories />
         <BestSellers />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <Newsletter />
       </main>
       <Footer />
     </div>
   );
 }
-

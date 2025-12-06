@@ -35,10 +35,18 @@ export default function AdminBanners() {
   }, []);
 
   const fetchBanners = async () => {
-    const res = await fetch('/api/banners');
-    const data = await res.json();
-    if (data.success) {
-      setBanners(data.data);
+    try {
+      // Fetch tất cả banners (không filter isActive) cho admin
+      const res = await fetch('/api/banners?all=true');
+      const data = await res.json();
+      if (data.success) {
+        setBanners(data.data);
+        console.log('Fetched banners:', data.data.map((b: Banner) => ({ id: b._id, title: b.title })));
+      } else {
+        console.error('Failed to fetch banners:', data.error);
+      }
+    } catch (error) {
+      console.error('Error fetching banners:', error);
     }
   };
 
@@ -52,20 +60,32 @@ export default function AdminBanners() {
     const url = editingBanner ? `/api/banners/${editingBanner._id}` : '/api/banners';
     const method = editingBanner ? 'PUT' : 'POST';
 
-    const res = await fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bannerData),
-    });
+    console.log('Submitting banner:', { url, method, editingBannerId: editingBanner?._id, bannerData });
 
-    const data = await res.json();
-    if (data.success) {
-      fetchBanners();
-      setShowForm(false);
-      setEditingBanner(null);
-      resetForm();
-    } else {
-      alert('Lỗi: ' + data.error);
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bannerData),
+      });
+
+      const data = await res.json();
+      console.log('Banner response:', data);
+
+      if (data.success) {
+        fetchBanners();
+        setShowForm(false);
+        setEditingBanner(null);
+        resetForm();
+      } else {
+        const errorMsg = data.debug 
+          ? `${data.error}\nDebug: ${JSON.stringify(data.debug)}`
+          : data.error;
+        alert('Lỗi: ' + errorMsg);
+      }
+    } catch (error: any) {
+      console.error('Submit error:', error);
+      alert('Lỗi kết nối: ' + error.message);
     }
   };
 
